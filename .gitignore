@@ -47,3 +47,5 @@ Temporary Items
 .apdisk
 
 # Files Related to a local deployment of the package
+socHACKi.egg-info/
+socHACKi/__pycache__
