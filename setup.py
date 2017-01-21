@@ -10,8 +10,8 @@ setup(
     long_description=long_description,
     author='John Sochacki',
     author_email='johnsochacki@hotmail.com',
-    url='https://www.youtube.com/channel/UCd9MXTGWGp3OljecvJMtdow',
+    url='https://github.com/jsochacki/',
     packages = find_packages(exclude=['*test*']),
-    install_requires=['pandas>=0.18.1'],
+    install_requires=['pandas>=0.18.1','tabulate','python>=3.0'],
     keywords = ['Type Conversion', 'Pandas', 'Visio'],
 )
