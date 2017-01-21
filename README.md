@@ -7,7 +7,7 @@ and or modify his work.
 To install just download from the git and install
 
 Pip:
-PATH>pip install [-e] git+https://github.com/jsochacki/socHACKi.git
+PATH>pip install [-e] socHACKi
 The -e installs the package in develop mode
 
 Manual:
