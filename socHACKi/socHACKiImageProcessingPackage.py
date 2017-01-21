@@ -8,6 +8,39 @@ import cv2
 # Required imports if put in sepatate package
 # from import cv2
 
+class MovingObjectBox(object):
+    """
+    MovingObjectBoxeshould be assigned to each oving object that is detected
+    It will have the following attributes
+
+    instance.top.left.x
+    instance.top.left.y
+    instance.top.right.x
+    instance.top.right.y
+    instance.bottom.left.x
+    instance.bottom.left.y
+    instance.bottom.right.x
+    instance.bottom.right.y
+
+    Half of the attributes are derived from the other attributes
+
+    In order to initialize the MovingObjectBox the instantiation must be
+    passed parameters as follows
+
+    Parameters
+    ----------
+    *args : Tuple of floats
+        ( (top_left_x), (top_left_y) ),
+        ( (bottom_right_x), (bottom_right_y) ) )
+
+    Example
+    -------
+    >>>> box_1 = MovingObjectBox(((1, 5), (1.6, 5.6)))
+
+    """
+    def __init__(self, *args):
+        pass
+
 
 class MotionDetector(object):
     """
@@ -48,10 +81,6 @@ class MotionDetector(object):
     def document_name(self, NewName):
         self._document_name = False
 
-#!/usr/bin/env python
-
-# See also: http://sundararajana.blogspot.com/2007/05/motion-detection-using-opencv.html
-
 import cv
 import time
 
@@ -68,14 +97,6 @@ Python Motion Tracker
 Reads an incoming video stream and tracks motion in real time.
 Detected motion events are logged to a text file.  Also has face detection.
 """
-
-#
-# BBoxes must be in the format:
-# ( (topleft_x), (topleft_y) ), ( (bottomright_x), (bottomright_y) ) )
-top = 0
-bottom = 1
-left = 0
-right = 1
 
 def merge_collided_bboxes( bbox_list ):
 	# For every bbox...
