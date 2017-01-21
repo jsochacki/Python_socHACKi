@@ -12,6 +12,6 @@ setup(
     author_email='johnsochacki@hotmail.com',
     url='https://github.com/jsochacki/',
     packages = find_packages(exclude=['*test*']),
-    install_requires=['pandas>=0.18.1','tabulate','python>=3.0'],
+    install_requires=['pandas>=0.18.1','tabulate'],
     keywords = ['Type Conversion', 'Pandas', 'Visio'],
 )
