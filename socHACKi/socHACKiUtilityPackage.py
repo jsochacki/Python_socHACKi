@@ -18,6 +18,7 @@ import os
 
 from tabulate import tabulate
 
+import pandas as pd
 # Required imports if put in sepatate package
 # from tabulate import tabluate
 
@@ -1015,3 +1016,51 @@ class FileSystemNavigation(object):
     @staticmethod
     def return_unique_entries(non_unique_list):
         return list(set(non_unique_list))
+
+# Required imports if put in sepatate package
+# import pandas as pd
+class ExcelHandler(object):
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def save_to_excel(pdf, FILE_PATH, FILE_NAME, SHEET_NAME, START_COLUMN):
+        # CREATE AN EXCEL WRITER OBJECT SO I CAN WRITE ALL THE RESULTS TO A SINGLE FILE
+        WriterObj = pd.ExcelWriter(FILE_PATH +
+                                       '\\' +
+                                       FILE_NAME,
+                                   engine='xlsxwriter',
+                                   datetime_format='mmm dd yyyy',
+                                   date_format='mmm dd yyyy')
+
+        # WRITE THE RAW INFORMATION TO THE FILE
+        pdf.to_excel(WriterObj,
+                     SHEET_NAME,
+                     startrow=1,
+                     startcol=START_COLUMN,
+                     header=True,
+                     index=True,
+                     index_label='')
+
+        # FORMAT THE RESULTS THAT I WRITTEN INTO THE FILES
+        workbook = WriterObj.book
+        pdf_worksheet = WriterObj.sheets[SHEET_NAME]
+
+        # FORMAT THE SHEETS
+        columnwidths = []
+        columnwidths = [max(s)
+                        if str(max(s)) != 'nan' else 20
+                        for s in [pdf[value].astype('O').str.len()
+                        for index, value
+                            in enumerate(pdf.columns)]]
+
+        # ScheduleFileDataFrameExplicitWorksheet.set_row(2,None,format2)
+        for colnum in range(len(columnwidths)):
+            pdf_worksheet.set_column(
+                                     colnum +
+                                     START_COLUMN,
+                                     len(pdf.columns),
+                                     columnwidths[colnum])
+
+        # SAVE THE FILE
+        WriterObj.save()
